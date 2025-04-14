@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LA TV Shows | Home</title>
+    <title>Pokemon Gen 1 Catalog</title>
     <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="scripts.js"></script>
   </head>
 
   <body>
-    <header class="main-header">
+<!--     <header class="main-header">
       <h3 class="title">Gen 1 PokeDex</h3>
-    </header>
+    </header> -->
+    <header class="row-container" style= "position:fixed; display: flex; justify-content: center;  margin: 0; top:0; " id="filters">
+      <button style= "background-color:#acaa7a" id="filter-Normal" onclick="filter('Normal');">Normal</button>
+      <button style="background-color:#9e90c5" id="filter-Flying" onclick="filter('Flying');">Flying</button>
+      <button style="background-color:#6e8bc5" id="filter-Water" onclick="filter('Water');">Water</button>
+    <button style="background-color:#98d6d5" id="filter-Ice" onclick="filter('Ice');">Ice</button>
+    <button style="background-color:#f27f2e" id="filter-Fire" onclick="filter('Fire');">Fire</button>
+    <button style="background-color:#6457a6" id="filter-Dragon" onclick="filter('Dragon');">Dragon</button>
+    <button style="background-color:#f6d233" id="filter-Electric" onclick="filter('Electric');">Electric</button>
+    <button style="background-color:#b9a238" id="filter-Rock" onclick="filter('Rock');">Rock</button>
+    <button style="background-color:#e0c166" id="filter-Ground" onclick="filter('Ground');">Ground</button>
+   <button style="background-color:#79c151" id="filter-Grass" onclick="filter('Grass');">Grass</button>
+   <button style="background-color:#f05889" id="filter-Psychic" onclick="filter('Psychic');">Psychic</button>
+  <button style="background-color:#c4312a" id="filter-Fighting" onclick="filter('Fighting');">Fighting</button>
+        <button style="background-color:#aabb39" id="filter-Bug" onclick="filter('Bug');">Bug</button>
+        <button style= "background-color:#9f439a" id="filter-Poison" onclick="filter('Poison');">Poison</button>
+  <button style="background-color:#72599a" id="filter-Ghost" onclick="filter('Ghost');">Ghost</button>
+  <button style="background-color:#f7cbdf" id="filter-Fairy" onclick="filter('Fairy');">Fairy</button>
+        <button style="background-color:#b8b8d2" id="filter-Steel" onclick="filter('Steel');">Steel</button>
+     </header>
     <div id="card-container"></div>
+      
     <div class="card" style="display: none">
       <div class="card-content">
         <div class="row-container">
@@ -19,7 +39,7 @@
           <h2>Pokemon name</h2>
           </div>
           <div class="row-id">
-            <h2>#000</h2>
+            <h2>#0000</h2>
           </div>
         </div>
         <div class = "center">
@@ -35,7 +55,7 @@
     </div>
     <div class="footer">
       <button onclick="quoteAlert();">Get A Quote!</button>
-      <button onclick="removeLastCard();">Remove A Card!</button>
+      <button onclick="filter('Grass');">Remove A Card!</button>
     </div>
   </body>
 </html>
