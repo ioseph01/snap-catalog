@@ -2181,6 +2181,8 @@ const data = {
     }
 }
 const typeColorMap = {
+  'Fairy':'#f7cbdf',
+  'Steel':'#b8b8d2',
   'Normal':'#acaa7a',
   'Flying':'#9e90c5',
   'Water':'#6e8bc5',
@@ -2206,8 +2208,24 @@ const statColors = ["#9ee865",
                    "#899eea",
                    "#e46cca"];
 
-
 let titles = Object.keys(data);
+let type_filter =
+{'Normal':false,
+  'Flying':false,
+  'Water':false,
+  'Ice':false,
+  'Fire':false,
+  'Dragon':false,
+  'Electric':false,
+  'Rock':false,
+  'Ground':false,
+  'Grass':false,
+  'Psychic':false,
+  'Fighting':false,
+  'Bug':false,
+  'Poison':false,
+  'Ghost':false,
+};
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
 
@@ -2228,7 +2246,10 @@ function showCards() {
 function editCardContent(card, newTitle, ID, types, newImageURL, stats) {
   card.style.display = "block";
   card.style.borderColor = typeColorMap[types[0]];
-
+  
+  const cardTitleContainer = card.querySelector(".row-container");
+ cardTitleContainer.style.borderColor = typeColorMap[types[0]];
+  
   const cardHeader = card.querySelector(".row-title");
   cardHeader.textContent = newTitle;
   
@@ -2256,7 +2277,7 @@ function editCardContent(card, newTitle, ID, types, newImageURL, stats) {
     const statDiv = document.createElement('div');
     statDiv.className = 'stat-box';
     // statDiv.textContent =  statNames[i] + "<br>" + "2";
-     statDiv.innerHTML = statNames[i] + "<br>4";
+     statDiv.innerHTML = statNames[i] + "<br>" + stats[i];
     statDiv.style.backgroundColor = statColors[i];
     cardStats.appendChild(statDiv);
   }
@@ -2277,4 +2298,37 @@ function quoteAlert() {
 function removeLastCard() {
   titles.pop(); // Remove last item in titles array
   showCards(); // Call showCards again to refresh
+}
+
+function type_check(id) {
+
+  for (let i = 0; i < data[id].types.length; i++){ 
+    if (type_filter[data[id].types[i]]) {
+      return;
+    }
+  }
+  titles.push(id);
+}
+
+function filter(typing) {
+  if (type_filter[typing]) {
+    type_filter[typing] = false;
+    titles = []
+    
+    Object.keys(data).forEach(type_check);
+    const button = document.getElementById("filter-" + typing);
+    button.style.backgroundColor = typeColorMap[typing];
+    
+  //Add the type back in   
+  }
+  else {
+    const filtered = titles.filter(id => !data[id]['types'].includes(typing));
+    titles = filtered;
+    const button = document.getElementById("filter-" + typing);
+    button.style.backgroundColor = "rgb(51,51,51)";
+    type_filter[typing] = true;
+  }
+  
+  showCards();
+  
 }
