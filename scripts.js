@@ -2342,7 +2342,7 @@ function sort(style) {
     button.style.fontWeight = "normal";
 
   sortStyle = style;
-  const button2 = document.getElementById(sortStyle + "_sort");
+  const button2 = document.getElementById(style + "_sort");
     button2.style.fontWeight = "bold";
 
   let key = 0;
