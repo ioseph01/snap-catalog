@@ -1,4 +1,4 @@
-fetch('https://raw.githubusercontent.com/ioseph01/snap-catalog/refs/heads/main/data.json')
+fetch('https://raw.githubusercontent.com/ioseph01/snap-catalog/main/data.json')
   .then(response => response.json())
   .then(data => {
     console.log(data); // your JSON object from the link
