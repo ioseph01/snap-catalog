@@ -2336,7 +2336,6 @@ function filter(typing) {
 
 
 function sort(style) {
-  alert("Sort");
   if (style == sortStyle) {return;}
   const button = document.getElementById(sortStyle + "_sort");
     button.style.fontWeight = "normal";
