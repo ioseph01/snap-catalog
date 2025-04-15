@@ -1747,9 +1747,9 @@ const data = {
         ]
     },
     "#0122": {
-        "name": "Mr. Mine",
+        "name": "Mr. Mime",
         "types": [
-            "psychic"
+            "Psychic"
         ],
         "stats": [
             "40",
@@ -2200,7 +2200,7 @@ const typeColorMap = {
   'Ghost':'#72599a'
 };
 
-const statNames = ['HP','Atk','Def','Sp.Atk','Sp.Atk','Sp.Def', 'Speed'];
+const statNames = ['HP','Atk','Def','Sp.Atk','Sp.Def', 'Speed'];
 const statColors = ["#9ee865",
                    "#f5de69",
                    "#f09a65",
@@ -2226,6 +2226,8 @@ let type_filter =
   'Poison':false,
   'Ghost':false,
 };
+
+let sortStyle = "id";
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
 
@@ -2291,8 +2293,7 @@ function editCardContent(card, newTitle, ID, types, newImageURL, stats) {
 document.addEventListener("DOMContentLoaded", showCards);
 
 function quoteAlert() {
-  titles = data.slice();
-  showCards(); 
+  alert("please grade ");
 }
 
 function removeLastCard() {
@@ -2329,6 +2330,73 @@ function filter(typing) {
     type_filter[typing] = true;
   }
   
+  sort(sortStyle);
+  showCards();
+}
+
+
+function sort(style) {
+  
+  if (style == sortStyle) {return;}
+  const button = document.getElementById(sortStyle + "_sort");
+    button.style.fontWeight = "normal";
+
+  sortStyle = style;
+  const button2 = document.getElementById(sortStyle + "_sort");
+    button2.style.fontWeight = "bold";
+
+  let key = 0;
+  if (style == "HP") {
+    key = 0;
+  }
+  else if (style == "Atk") {
+    key = 1;
+  }
+  else if (style == "Def") {
+    key = 2;
+  }
+  else if (style == "Sp.Atk") {
+    key = 3;
+  }
+  else if (style == "Sp.Def") {
+    key = 4;
+  }
+  else if (style == "Speed") {
+    key = 5;
+
+  }
+  else if (style == "id") {titles.sort();
+                          return;
+                          }
+  titles = titles.sort((a, b) => {
+  if (Number(data[a]["stats"][key]) < Number(data[b]["stats"][key])) {return -1;}
+  if (Number(data[a]["stats"][key]) > Number(data[b]["stats"][key])) {return 1;}
+  return 0;
+});
+  
+  showCards();
+}
+
+function reset() {
+  Object.keys(type_filter).forEach(key => {
+  type_filter[key] = false;  
+});
+  
+  
+  Object.keys(typeColorMap).forEach(key => {
+  const button = document.getElementById("filter-" + key);
+    button.style.backgroundColor = typeColorMap[key]; 
+});
+  
+  Object(statNames).forEach(key => {
+      const button = document.getElementById(key + "_sort");
+    button.style.fontWeight = "normal";
+});
+  const button = document.getElementById("id_sort");
+    button.style.fontWeight = "bold";
+  
+  
+  titles = Object.keys(data);
   showCards();
   
 }
