@@ -1,11 +1,13 @@
-let data = null;
+let data;
 
 fetch('data.json')
   .then(response => response.json())
-  .then(data => {
-    myData = data;
-    console.log(myData); // now accessible outside the fetch chain
-  });
+  .then(json => {
+    data = json;
+    console.log(data); 
+  })
+  .catch(error => console.error('Error loading JSON:', error));
+
 
 const typeColorMap = {
   'Fairy':'#f7cbdf',
