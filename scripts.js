@@ -1,9 +1,18 @@
-fetch('https://raw.githubusercontent.com/ioseph01/snap-catalog/main/data.json')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data); // your JSON object from the link
-  })
-  .catch(error => console.error('Error fetching JSON:', error));
+let data;
+let titles;
+
+const getData = async () => {
+  const response = await fetch('https://raw.githubusercontent.com/ioseph01/snap-catalog/main/data.json');
+  const data_ = await response.json();
+  data = data_;
+  return data_;
+};
+(async () => {
+  await getData();
+  console.dir(data);
+  titles = Object.keys(data);
+})();
+
 
 const typeColorMap = {
   'Fairy':'#f7cbdf',
@@ -33,7 +42,7 @@ const statColors = ["#9ee865",
                    "#899eea",
                    "#e46cca"];
 
-let titles = Object.keys(data);
+
 let type_filter =
 {'Normal':false,
   'Flying':false,
@@ -115,7 +124,12 @@ function editCardContent(card, newTitle, ID, types, newImageURL, stats) {
 }
 
 // This calls the addCards() function when the page is first loaded
-document.addEventListener("DOMContentLoaded", showCards);
+// document.addEventListener("DOMContentLoaded", showCards);
+document.addEventListener("DOMContentLoaded", async () => {
+  await getData();
+  console.log(data);
+  showCards();
+  });
 
 function quoteAlert() {
   alert("please grade ");
