@@ -11,6 +11,27 @@
 <!--     <header class="main-header">
       <h3 class="title">Gen 1 PokeDex</h3>
     </header> -->
+    <div class="sidebar">
+      <div class="stat-row" style="color:white; padding-bottom:10px">
+        Sort by
+      </div>
+      <div class="stat-row">
+        <button id="id_sort" class="stat-box" style= "background-color:#59C3BB; width:80px; font-weight: bold;" type="button" onclick="sort('id');">ID</button>
+      </div>
+      <div class="stat-row">
+        <button class="stat-box" style= "background-color:#9ee865; width:40px" onclick="sort('HP');" id="HP_sort">HP</button>
+        <button class="stat-box" id="Atk_sort" style= "background-color:#f5de69;width:40px" onclick="sort('Atk');">Atk</button>
+      </div>
+      <div class="stat-row">
+        <button id="Def_sort" class="stat-box" style= "background-color:#f09a65; width:40px" onclick="sort('Def');">Def</button>
+        <button class="stat-box" style= "background-color:#66d8f6; width:40px" onclick="sort('Sp.Atk');" id="Sp.Atk_sort">Sp.Atk</button>
+      </div>
+      <div class="stat-row">
+        <button class="stat-box" style= "background-color:#899eea; width:40px" onclick="sort('Sp.Def');" id="Sp.Def_sort">Sp.Def</button>
+        <button class="stat-box" style= "background-color:#e46cca; width:40px" onclick="sort('Speed');" id="Speed_sort">Speed</button>
+      </div>
+      
+    </div>
     <header class="row-container" style= "position:fixed; display: flex; justify-content: center;  margin: 0; top:0; " id="filters">
       <button style= "background-color:#acaa7a" id="filter-Normal" onclick="filter('Normal');">Normal</button>
       <button style="background-color:#9e90c5" id="filter-Flying" onclick="filter('Flying');">Flying</button>
@@ -53,9 +74,10 @@
 
       
     </div>
+    
     <div class="footer">
-      <button onclick="quoteAlert();">Get A Quote!</button>
-      <button onclick="filter('Grass');">Remove A Card!</button>
+      
+      <button style="background-color:black" onclick="reset();">Reset</button>
     </div>
   </body>
 </html>
