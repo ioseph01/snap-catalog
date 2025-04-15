@@ -1,13 +1,9 @@
-let data;
-
-fetch('data.json')
+fetch('https://raw.githubusercontent.com/ioseph01/snap-catalog/refs/heads/main/data.json')
   .then(response => response.json())
-  .then(json => {
-    data = json;
-    console.log(data); 
+  .then(data => {
+    console.log(data); // your JSON object from the link
   })
-  .catch(error => console.error('Error loading JSON:', error));
-
+  .catch(error => console.error('Error fetching JSON:', error));
 
 const typeColorMap = {
   'Fairy':'#f7cbdf',
@@ -165,6 +161,7 @@ function filter(typing) {
 
 
 function sort(style) {
+  
   if (style == sortStyle) {return;}
   const button = document.getElementById(sortStyle + "_sort");
     button.style.fontWeight = "normal";
@@ -194,8 +191,18 @@ function sort(style) {
 
   }
   else if (style == "id") {titles.sort();
+                           showCards();
                           return;
                           }
+  else if (style == "name") {
+    titles = titles.sort((a, b) => {
+  if (data[a]["name"] < data[b]["name"]) {return -1;}
+  if (data[a]["name"] > data[b]["name"]) {return 1;}
+  return 0;
+});
+  showCards();
+    return;
+  }
   titles = titles.sort((a, b) => {
   if (Number(data[a]["stats"][key]) < Number(data[b]["stats"][key])) {return -1;}
   if (Number(data[a]["stats"][key]) > Number(data[b]["stats"][key])) {return 1;}
@@ -216,10 +223,12 @@ function reset() {
     button.style.backgroundColor = typeColorMap[key]; 
 });
   
-  Object(statNames).forEach(key => {
-      const button = document.getElementById(key + "_sort");
-    button.style.fontWeight = "normal";
-});
+//   Object(statNames).forEach(key => {
+//       const button = document.getElementById(key + "_sort");
+//     button.style.fontWeight = "normal";
+// });
+  const button1 = document.getElementById(sortStyle + "_sort");
+    button1.style.fontWeight = "normal";
   const button = document.getElementById("id_sort");
     button.style.fontWeight = "bold";
   
