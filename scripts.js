@@ -249,5 +249,8 @@ function reset() {
   
   titles = Object.keys(data);
   showCards();
-  
+  window.scrollTo({
+  top: 0,
+  behavior: "smooth"
+});
 }
